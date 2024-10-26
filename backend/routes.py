@@ -44,7 +44,8 @@ def login():
     email = data['email']
     password = data['password']
 
-    cur = mysql.connection.cursor()
+    connection = get_db_connection()
+    cur = connection.cursor()
     cur.execute("SELECT * FROM users WHERE email = %s", (email,))
     user = cur.fetchone()
     cur.close()
@@ -62,7 +63,8 @@ def get_workouts():
     current_user = get_jwt_identity()
     user_id = current_user['id']
 
-    cur = mysql.connection.cursor()
+    connection = get_db_connection()
+    cur = connection.cursor()
     cur.execute("SELECT * FROM workouts WHERE user_id = %s", (user_id,))
     workouts = cur.fetchall()
     cur.close()
@@ -95,7 +97,8 @@ def add_workout():
     details = data.get('details')
     notes = data.get('notes')
 
-    cur = mysql.connection.cursor()
+    connection = get_db_connection()
+    cur = connection.cursor()
     cur.execute(
         "INSERT INTO workouts (user_id, date, exercise_type, duration, details, notes) VALUES (%s, %s, %s, %s, %s, %s)",
         (user_id, date, exercise_type, duration, details, notes)
@@ -112,7 +115,8 @@ def manage_workout(id):
     current_user = get_jwt_identity()
     user_id = current_user['id']
 
-    cur = mysql.connection.cursor()
+    connection = get_db_connection()
+    cur = connection.cursor()
 
     if request.method == 'GET':
         cur.execute("SELECT * FROM workouts WHERE id = %s AND user_id = %s", (id, user_id))
