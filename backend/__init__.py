@@ -28,11 +28,12 @@ def create_app():
 
     # Import and register blueprints or resources
     from backend.resources.user import UserRegistration, UserLogin
-    from backend.resources.workout import WorkoutList
+    from backend.resources.workout import WorkoutList, WorkoutDetail
 
     # Register API resources
     api.add_resource(UserRegistration, '/signup')
     api.add_resource(UserLogin, '/login')
     api.add_resource(WorkoutList, '/workouts')
+    api.add_resource(WorkoutDetail, '/workouts/<int:id>')
 
     return app

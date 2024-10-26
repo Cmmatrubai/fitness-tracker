@@ -8,6 +8,16 @@ In the project directory, you can run:
 
 ### `npm start`
 
+### 'npm install'
+
+### 'python3 -m venv venv'
+
+### 'source venv/bin/activate'
+
+### 'pip install -r requirements.txt'
+
+### 'flask run'
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
